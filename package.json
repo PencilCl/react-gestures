@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/bh5-js/react-gestures.git"
+    "url": "https://github.com/PencilCl/react-gestures.git"
   },
   "keywords": [ "react", "gestures", "events", "touch", "ios", "android", "mobile" ],
-  "author": "Bodhi5, Inc <info@bodhi5.com>",
+  "author": "Pencil",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bh5-js/react-gestures/issues"
+    "url": "https://github.com/PencilCl/react-gestures/issues"
   },
-  "homepage": "https://github.com/bh5-js/react-gestures",
+  "homepage": "https://github.com/PencilCl/react-gestures.git",
   "dependencies": {
     "babel-runtime": "^5.4.3"
   },
