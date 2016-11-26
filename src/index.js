@@ -68,7 +68,7 @@ class Gestures extends React.Component {
     this._emitEvent('onTouchMove', ge);
 
     if (ge.gesture.absX > this.props.swipeThreshold && ge.gesture.absY > this.props.swipeThreshold) {
-      this._handleSwipeGesture(ge);
+      this._handleSwipeGesture(ge, false);
       return;
     }
   }
@@ -83,7 +83,7 @@ class Gestures extends React.Component {
     this._emitEvent('onTouchEnd', ge);
 
     if (this.state.swiping) {
-      this._handleSwipeGesture(ge);
+      this._handleSwipeGesture(ge, true);
       return this._resetState();
     }
     if (ge.gesture.duration > 0 ) {
@@ -97,18 +97,20 @@ class Gestures extends React.Component {
     this._emitEvent('onTap', ge);
   }
 
-  _handleSwipeGesture(ge) {
+  _handleSwipeGesture(ge, sendEvent) {
     let { deltaX, absX, deltaY, absY } = ge.gesture;
     let direction = (absX > absY)
       ? deltaX < 0 ? 'Right' : 'Left'
-      : deltaY < 0 ? 'Up' : 'Down';
+      : deltaY < 0 ? 'Down' : 'Up';
 
       this.setState({ swiping: true });
 
       ge.gesture.isFlick = ge.gesture.velocity > this.props.flickThreshold;
       ge.type = `swipe${direction.toLowerCase()}`;
-      this._emitEvent(`onSwipe${direction}`, ge);
-      ge.preventDefault();
+      if (sendEvent) {
+        this._emitEvent(`onSwipe${direction}`, ge);
+        ge.preventDefault();
+      }
   }
 
   render() {
